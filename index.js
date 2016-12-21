@@ -25,32 +25,32 @@ const SIZES = {
 	// References:
 	// - https://makeappicon.com/ios10icon (good listing)
 	// - https://developer.apple.com/ios/human-interface-guidelines/graphics/app-icon/ (canonical source, but usually only for the most recent iOS version)
-	'ios-57'	 : { width:  57, height:  57 },
+	'ios-57'     : { width:  57, height:  57 },
 	'ios-57@2x'  : { width: 114, height: 114 },
-	'ios-72'	 : { width:  72, height:  72 },
+	'ios-72'     : { width:  72, height:  72 },
 	'ios-72@2x'  : { width: 144, height: 144 },
-	'ios-60'	 : { width:  60, height:  60 },
+	'ios-60'     : { width:  60, height:  60 },
 	'ios-60@2x'  : { width: 120, height: 120 },
 	'ios-60@3x'  : { width: 180, height: 180 },
-	'ios-76'	 : { width:  76, height:  76 },
+	'ios-76'     : { width:  76, height:  76 },
 	'ios-76@2x'  : { width: 152, height: 152 },
 	'ios-76@3x'  : { width: 228, height: 228 },
 	'ios-83.5@2x': { width: 167, height: 167 },
 	'ios-50@2x'  : { width: 100, height: 100 },
 	// Small
-	'ios-40'	 : { width:  40, height:  40 },
+	'ios-40'     : { width:  40, height:  40 },
 	'ios-40@2x'  : { width:  80, height:  80 },
 	'ios-40@3x'  : { width: 120, height: 120 },
 	// Settings
-	'ios-29'	 : { width:  29, height:  29 },
+	'ios-29'     : { width:  29, height:  29 },
 	'ios-29@2x'  : { width:  58, height:  58 },
 	'ios-29@3x'  : { width:  87, height:  87 },
 	// Toolbar
-	'ios-22'	 : { width:  22, height:  22 },
+	'ios-22'     : { width:  22, height:  22 },
 	'ios-22@2x'  : { width:  44, height:  44 },
 	'ios-22@3x'  : { width:  66, height:  66 },
 	// Tabbar
-	'ios-25'	 : { width:  25, height:  25 },
+	'ios-25'     : { width:  25, height:  25 },
 	'ios-25@2x'  : { width:  50, height:  50 },
 	'ios-25@3x'  : { width:  75, height:  75 }
 };
