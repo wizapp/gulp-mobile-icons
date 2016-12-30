@@ -52,7 +52,10 @@ const SIZES = {
 	// Tabbar
 	'ios-25'     : { width:  25, height:  25 },
 	'ios-25@2x'  : { width:  50, height:  50 },
-	'ios-25@3x'  : { width:  75, height:  75 }
+	'ios-25@3x'  : { width:  75, height:  75 },
+
+	/** Chrome touch icon **/
+	'chrome-touch': { width: 196, height: 196 }
 };
 
 const transform = (sizes, imageTransform) => function(file, encoding, callback) {
