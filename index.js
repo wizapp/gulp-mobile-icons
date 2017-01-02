@@ -83,7 +83,9 @@ const SIZES = {
 	'ios-25@3x'  : { width:  75, height:  75 },
 
 	/** Chrome touch icon **/
-	'chrome-touch': { width: 196, height: 196 }
+	// Reference: https://developer.chrome.com/multidevice/android/installtohomescreen
+	'chrome-192': { width: 192, height: 192 },
+	'chrome-128': { width: 128, height: 128 }
 };
 
 const transform = (sizes, imageTransform) => function(file, encoding, callback) {

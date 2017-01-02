@@ -69,6 +69,24 @@ Add the following to your `config.xml` to use the icons in a Cordova application
 </platform>
 ```
 
+### Web application
+
+When using the app as a web application, you need to add to your `index.html` (see also [Apple documentation](https://developer.apple.com/library/content/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html)):
+
+```html
+<!-- iPhone -->
+<link rel="apple-touch-icon" href="images/ios-60@2x.png">
+<!-- iPhone retina -->
+<link rel="apple-touch-icon" sizes="180x180" href="images/ios-60@3x.png">
+<!-- iPad -->
+<link rel="apple-touch-icon" sizes="152x152" href="images/images/ios-76@2x.png">
+<!-- iPad retina -->
+<link rel="apple-touch-icon" sizes="167x167" href="images/ios-83.5@2x">
+<!-- Chrome -->
+<link rel="icon" sizes="192x192" href="images/chrome-192.png">
+<link rel="icon" sizes="128x128" href="images/chrome-128.png">
+```
+
 ## Explanation
 
 This [blog post](https://medium.com/collaborne-engineering/take-out-the-pain-of-building-app-icons-249ee03398a4#.l6s7smjmu) explain the implementation details of this plugin in detail.
