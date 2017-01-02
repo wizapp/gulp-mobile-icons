@@ -26,13 +26,13 @@ const SIZES = {
 	// - https://makeappicon.com/ios10icon (good listing)
 	// - https://developer.apple.com/ios/human-interface-guidelines/graphics/app-icon/ (canonical source, but usually only for the most recent iOS version)
 	/* App icon */
-	// For iOS <7
+	// iPhone (iOS 5 + iOS 6)
 	'ios-57'     : { width:  57, height:  57 },
-	// For iOS <7
+	// iPhone retina (iOS 5 + iOS 6)
 	'ios-57@2x'  : { width: 114, height: 114 },
-	// For iOS <7
+	// iPad (iOS 5 + iOS 6)
 	'ios-72'     : { width:  72, height:  72 },
-	// For iOS <7
+	// iPad retina (iOS 5 + iOS 6)
 	'ios-72@2x'  : { width: 144, height: 144 },
 	// iPhone + iPad (non-retina)
 	'ios-60'     : { width:  60, height:  60 },
@@ -47,10 +47,10 @@ const SIZES = {
 	'ios-76@3x'  : { width: 228, height: 228 },
 	// iPad Pro
 	'ios-83.5@2x': { width: 167, height: 167 },
-	// For iOS <7
-	'ios-50@2x'  : { width: 100, height: 100 },
 
 	/* Spotlight */
+	// iPad retina (iOS 5 + iOS 6)
+	'ios-50@2x'  : { width: 100, height: 100 },
 	// iPhone + iPad (non-retina)
 	'ios-40'     : { width:  40, height:  40 },
 	// iPhone 6s, iPhone 6, iPhone SE, iPad Pro, iPad, iPad mini
@@ -66,7 +66,7 @@ const SIZES = {
 	// iPhone 6s Plus, iPhone 6 Plus
 	'ios-29@3x'  : { width:  87, height:  87 },
 
-	/* Navigation bar and Toolbar */
+	/* Navigation bar and toolbar */
 	// iPhone + iPad (non-retina)
 	'ios-22'     : { width:  22, height:  22 },
 	// iPhone 6s, iPhone 6, iPhone SE, iPad Pro, iPad, iPad mini
