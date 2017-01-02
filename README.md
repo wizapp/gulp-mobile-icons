@@ -18,9 +18,9 @@ gulp.task('default', [], function() {
 
 This will create all icons in the folder `images/`.
 
-### Cordova
+### Cordova / PhoneGap
 
-Add the following to your `config.xml` to use the icons in a Cordova application:
+Add the following to your `config.xml` to use the icons in a Cordova/PhoneGap application:
 
 ```html
 <platform name="ios">
