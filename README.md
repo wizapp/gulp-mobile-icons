@@ -22,7 +22,6 @@ This will create all icons in the folder `images/`.
 Add the following to your `config.xml` to use the icons in a Cordova application:
 
 ```html
-<!-- Icons for iOS and Android -->
 <platform name="ios">
     <icon src="images/ios-57.png" width="57" height="57"/>
     <icon src="images/ios-57@2x.png" width="114" height="114"/>
