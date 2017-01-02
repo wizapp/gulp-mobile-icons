@@ -25,33 +25,61 @@ const SIZES = {
 	// References:
 	// - https://makeappicon.com/ios10icon (good listing)
 	// - https://developer.apple.com/ios/human-interface-guidelines/graphics/app-icon/ (canonical source, but usually only for the most recent iOS version)
+	/* App icon */
+	// For iOS <7
 	'ios-57'     : { width:  57, height:  57 },
+	// For iOS <7
 	'ios-57@2x'  : { width: 114, height: 114 },
+	// For iOS <7
 	'ios-72'     : { width:  72, height:  72 },
+	// For iOS <7
 	'ios-72@2x'  : { width: 144, height: 144 },
+	// iPhone + iPad (non-retina)
 	'ios-60'     : { width:  60, height:  60 },
+	// iPhone 6s, iPhone 6, iPhone SE
 	'ios-60@2x'  : { width: 120, height: 120 },
+	// iPhone 6s Plus, iPhone 6 Plus
 	'ios-60@3x'  : { width: 180, height: 180 },
+	// iPad (non-retina)
 	'ios-76'     : { width:  76, height:  76 },
+	// iPad, iPad mini
 	'ios-76@2x'  : { width: 152, height: 152 },
 	'ios-76@3x'  : { width: 228, height: 228 },
+	// iPad Pro
 	'ios-83.5@2x': { width: 167, height: 167 },
+	// For iOS <7
 	'ios-50@2x'  : { width: 100, height: 100 },
-	// Small
+
+	/* Spotlight */
+	// iPhone + iPad (non-retina)
 	'ios-40'     : { width:  40, height:  40 },
+	// iPhone 6s, iPhone 6, iPhone SE, iPad Pro, iPad, iPad mini
 	'ios-40@2x'  : { width:  80, height:  80 },
+	// iPhone 6s Plus, iPhone 6 Plus
 	'ios-40@3x'  : { width: 120, height: 120 },
-	// Settings
+
+	/* Settings */
+	// iPhone + iPad (non-retina)
 	'ios-29'     : { width:  29, height:  29 },
+	// iPhone 6s, iPhone 6, iPhone SE, iPad Pro, iPad, iPad mini
 	'ios-29@2x'  : { width:  58, height:  58 },
+	// iPhone 6s Plus, iPhone 6 Plus
 	'ios-29@3x'  : { width:  87, height:  87 },
-	// Toolbar
+
+	/* Navigation bar and Toolbar */
+	// iPhone + iPad (non-retina)
 	'ios-22'     : { width:  22, height:  22 },
+	// iPhone 6s, iPhone 6, iPhone SE, iPad Pro, iPad, iPad mini
 	'ios-22@2x'  : { width:  44, height:  44 },
+	// iPhone 6s Plus, iPhone 6 Plus
 	'ios-22@3x'  : { width:  66, height:  66 },
-	// Tabbar
+
+	/* Tab bar */
+	// iPhone + iPad (non-retina)
 	'ios-25'     : { width:  25, height:  25 },
+	// iPhone 6s, iPhone 6, iPhone SE, iPad Pro, iPad, iPad mini
 	'ios-25@2x'  : { width:  50, height:  50 },
+	// iPhone 6s Plus, iPhone 6 Plus
 	'ios-25@3x'  : { width:  75, height:  75 },
 
 	/** Chrome touch icon **/
