@@ -17,7 +17,63 @@ gulp
 
 This will create all icons in the folder `images/`.
 
-# Explanation
+### Cordova
+
+Add the following to your `config.xml` to use the icons in a Cordova application:
+
+```html
+<!-- Icons for iOS and Android -->
+<platform name="ios">
+    <icon src="ios-57.png" width="57" height="57"/>
+    <icon src="ios-57@2x.png" width="114" height="114"/>
+
+    <icon src="ios-72.png" width="72" height="72"/>
+    <icon src="ios-72@2x.png" width="144" height="144"/>
+
+    <icon src="ios-60.png" width="60" height="60"/>
+    <icon src="ios-60@2x.png" width="120" height="120"/>
+    <icon src="ios-60@3x.png" width="180" height="180"/>
+
+    <icon src="ios-76.png" width="76" height="76"/>
+    <icon src="ios-76@2x.png" width="152" height="152"/>
+    <icon src="ios-76@3x.png" width="228" height="228"/>
+
+    <icon src="ios-83.5@2x.png" width="167" height="167"/>
+
+    <icon src="ios-50@2x.png" width="100" height="100"/>
+
+    <!-- Small -->
+    <icon src="ios-40.png" width="40" height="40"/>
+    <icon src="ios-40@2x.png" width="80" height="80"/>
+    <icon src="ios-40@3x.png" width="120" height="120"/>
+
+    <!-- Settings -->
+    <icon src="ios-29.png" width="29" height="29"/>
+    <icon src="ios-29@2x.png" width="58" height="58"/>
+    <icon src="ios-29@3x.png" width="87" height="87"/>
+
+    <!-- Toolbar -->
+    <icon src="ios-22.png" width="22" height="22"/>
+    <icon src="ios-22@2x.png" width="44" height="44"/>
+    <icon src="ios-22@3x.png" width="66" height="66"/>
+
+    <!-- Tabbar -->
+    <icon src="ios-25.png" width="25" height="25"/>
+    <icon src="ios-25@2x.png" width="50" height="50"/>
+    <icon src="ios-25@3x.png" width="75" height="75"/>
+</platform>
+
+<platform name="android">
+    <icon src="android-ldpi.png" density="ldpi"/>
+    <icon src="android-mdpi.png" density="mdpi"/>
+    <icon src="android-hdpi.png" density="hdpi"/>
+    <icon src="android-xhdpi.png" density="xhdpi"/>
+    <icon src="android-xxhdpi.png" density="xxhdpi"/>
+    <icon src="android-xxxhdpi.png" density="xxxhdpi"/>
+</platform>
+```
+
+## Explanation
 
 This [blog post](https://medium.com/collaborne-engineering/take-out-the-pain-of-building-app-icons-249ee03398a4#.l6s7smjmu) explain the implementation details of this plugin in detail.
 
