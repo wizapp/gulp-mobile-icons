@@ -1,8 +1,7 @@
 # gulp-mobile-icons
 Gulp plugin that creates PNG icons for iOS and Android based on a SVG image.
 
-See this [blog post](https://medium.com/collaborne-engineering/the-pain-of-producing-mobile-icons-and-splash-screens-and-how-to-get-rid-off-it-b37372618ea0#.up1ljd9r9) for a detailed explanation of the problem that the
-`gulp-mobile-icons` plugin solves.
+See the blog post [The pain of producing mobile icons and splash screens — and how to get rid off it](https://medium.com/collaborne-engineering/the-pain-of-producing-mobile-icons-and-splash-screens-and-how-to-get-rid-off-it-b37372618ea0#.up1ljd9r9) for a detailed explanation of the problem that the plugin solves.
 
 ## Usage
 
