@@ -82,6 +82,9 @@ const SIZES = {
 	// iPhone 6s Plus, iPhone 6 Plus
 	'ios-25@3x'  : { width:  75, height:  75 },
 
+	// iOS marketing icon
+	'ios-marketing': { width: 1024, height: 1024 },
+
 	/** Chrome touch icon **/
 	// Reference: https://developer.chrome.com/multidevice/android/installtohomescreen
 	'chrome-192': { width: 192, height: 192 },
