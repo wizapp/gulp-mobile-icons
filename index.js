@@ -12,15 +12,7 @@ const PLUGIN_NAME = 'gulp-mobile-icons';
 /**
  * List of all sizes for which PNGs need to be created
  */
-const SIZES = {
-	/** ANDROID **/
-	'android-ldpi'   : { width:  36, height:  36 },
-	'android-mdpi'   : { width:  48, height:  48 },
-	'android-hdpi'   : { width:  72, height:  72 },
-	'android-xhdpi'  : { width:  96, height:  96 },
-	'android-xxhdpi' : { width: 144, height: 144 },
-	'android-xxxhdpi': { width: 196, height: 196 },
-
+const ios_SIZES = {
 	/** iOS **/
 	// References:
 	// - https://makeappicon.com/ios10icon (good listing)
@@ -84,17 +76,46 @@ const SIZES = {
 
 	// iOS marketing icon
 	'ios-marketing': { width: 1024, height: 1024 },
+};
 
+const android_SIZES = {
+	/** ANDROID **/
+	'android-ldpi'   : { width:  36, height:  36 },
+	'android-mdpi'   : { width:  48, height:  48 },
+	'android-hdpi'   : { width:  72, height:  72 },
+	'android-xhdpi'  : { width:  96, height:  96 },
+	'android-xxhdpi' : { width: 144, height: 144 },
+	'android-xxxhdpi': { width: 196, height: 196 },
+};
+
+const chrome_SIZES = {
 	/** Chrome touch icon **/
 	// Reference: https://developer.chrome.com/multidevice/android/installtohomescreen
 	'chrome-192': { width: 192, height: 192 },
 	'chrome-128': { width: 128, height: 128 }
 };
 
-const transform = (sizes, imageTransform) => function(file, encoding, callback) {
+const transform = (platform, imageTransform) => function(file, encoding, callback) {
 	if (file.isStream()) {
 		this.emit('error', new PluginError(PLUGIN_NAME, 'Streams are not supported!'));
 		return callback();
+	}
+		
+	let sizes;
+	switch (platform) {
+		case 'ios':
+			sizes = ios_SIZES;
+			break;
+		case 'android':
+			sizes = android_SIZES;
+			break;
+		case 'browser':
+		case 'chrome':
+			sizes = chrome_SIZES;
+			break;
+		default:
+			this.emit('error', new PluginError(PLUGIN_NAME, `Platform '${platform}' not supported!`));
+			return callback();
 	}
 
 	const promises = Object.keys(sizes).map(name => {
@@ -119,10 +140,10 @@ const transform = (sizes, imageTransform) => function(file, encoding, callback) 
 
 /**
  * Creates mobile icons
- * @param  {Object} [sizes=SIZES]            For testing: reduce number of sizes
+ * @param  {Object} [platform]                 ios, android, chrome or browser
  * @param  {Function} [imageTransform=svg2png] For testing: avoid expensive calls to svg2png
  * @return {Stream}
  */
-module.exports = function(sizes = SIZES, imageTransform = svg2png) {
-	return through.obj(transform(sizes, imageTransform));
+module.exports = function(platform, imageTransform = svg2png) {
+	return through.obj(transform(platform, imageTransform));
 };
