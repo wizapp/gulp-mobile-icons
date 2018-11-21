@@ -1,4 +1,4 @@
-# gulp-mobile-icons [![Build Status](https://travis-ci.org/Collaborne/gulp-mobile-icons.svg?branch=master)](https://travis-ci.org/Collaborne/gulp-mobile-icons) [![Greenkeeper badge](https://badges.greenkeeper.io/Collaborne/gulp-mobile-icons.svg)](https://greenkeeper.io/)
+# gulp-mobile-icons [![Build Status](https://travis-ci.org/Collaborne/gulp-mobile-icons.svg?branch=master)](https://travis-ci.org/Collaborne/gulp-mobile-icons)
 
 Gulp plugin that creates PNG icons for iOS and Android based on a SVG image.
 
