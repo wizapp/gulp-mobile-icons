@@ -1,3 +1,21 @@
+dist: trusty
+group: beta
 language: node_js
 node_js:
 - node
+cache:
+  directories:
+  - node_modules
+before_install:
+- if [ -d node_modules ] && [ x$(cat node_modules/.last-node-version 2>/dev/null) != x$(node -e 'console.log(process.version)') ]; then npm rebuild --update-binary && node -e 'console.log(process.version)' > node_modules/.last-node-version; fi
+script:
+- npm test
+deploy:
+  provider: npm
+  email: npm@collaborne.com
+  api_key:
+    secure: "cYJ9eZHJ3gBHk020GYTBUJbBaRQxAp2RqptWqRRJ46xJQ/+0HNDjmBkuy7yekPWSpCxt/nVrzTVLJFXXJK+tCnAvx1GRjsiSjxrTHPxrpB58MptB5Pgjcsx8g+8YkdC1rGCdveTW16pSwEHvjLD5xtEmTjv9+X71ZZZbdrNnk4seGaRoirjBx0Ep6R+ty11UDkm72hpqvvHHFJCgXyKTngoOpAtuNx1AhPSwyJ2yHw/V/o6b2eg0YYCP7TWuFS9Tw5FMseyQ9+oiAeStd6ybfN3mB3AWhjy10a61ST1EjRygsdareuH21Jd0VfnVWBLjfqy4WOdabtvqyzlNrHHMnHTVwGMstJzYP3n3MjoORDJ/f5hOyEa0D+KYUlU4yaREmtpUA45evNPz1YLAh3rCbRYBUeqkt90tDxy3acK7OYiTUWeZmyHItR1NBTz8/qdcXVHBCVS2VCaD521H3Ff8dC1EdTTmjfiMEAF0FOb28MTSnVA46DA2zkSN0JQmUsneaYqHhu8XLykM7tyT4QenNQvqjFvEPraTXkJeejmOCXMKKaLzqdoxK0ecZjAI2Z4Yvcv81+BSZp6Q/XbBJPoWvBrBgjRO6B61Rl3S1LT1HyL7I6+pHy8DhXky399wpVGuCui5b8Dh7sSoICV1x9zliW6OqKZFvRDN2x0axV7qQ/c="
+  on:
+    tags: true
+    condition: $(node -e 'console.log("v" + require("./package.json").version)') = ${TRAVIS_TAG}
+  skip_cleanup: true
