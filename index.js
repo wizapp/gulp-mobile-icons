@@ -1,9 +1,9 @@
 /* jshint node: true */
-
+// @ts-check
 'use strict';
 
 const through = require('through2');
-const svg2png = require('svg2png');
+const sharp = require("sharp");
 const gutil = require('gulp-util');
 const PluginError = gutil.PluginError;
 
@@ -11,6 +11,7 @@ const PLUGIN_NAME = 'gulp-mobile-icons';
 
 /**
  * List of all sizes for which PNGs need to be created
+ * @type {Object.<string,sharp.ResizeOptions>}}
  */
 const SIZES = {
 	/** ANDROID **/
@@ -91,18 +92,29 @@ const SIZES = {
 	'chrome-128': { width: 128, height: 128 }
 };
 
-const transform = (sizes, imageTransform) => function(file, encoding, callback) {
+/**
+ * 
+ * @param {typeof SIZES} sizes 
+ * @param {typeof sharp} imageTransform 
+ * @returns 
+ */
+const transform = (sizes, imageTransform) => function (file, encoding, callback) {
 	if (file.isStream()) {
 		this.emit('error', new PluginError(PLUGIN_NAME, 'Streams are not supported!'));
 		return callback();
 	}
 
 	const promises = Object.keys(sizes).map(name => {
-		return imageTransform(Buffer.from(file.contents), sizes[name])
+		const size = sizes[name];
+		const density = size.width; // the import density needs to be higher if the output size is large!
+		return imageTransform(Buffer.from(file.contents), { density: density })
+			.resize(sizes[name])
+			.flatten({ background: '#FFF' })
+			.png().toBuffer()
 			.then(png => {
 				const result = new gutil.File({
-					cwd : './',
-					path : `${name}.png`,
+					cwd: './',
+					path: `${name}.png`,
 					contents: png
 				});
 				this.push(result);
@@ -113,16 +125,15 @@ const transform = (sizes, imageTransform) => function(file, encoding, callback) 
 
 	Promise
 		.all(promises)
-		.then(()  => callback(null))
+		.then(() => callback(null))
 		.catch(e => console.error(e));
 };
 
 /**
  * Creates mobile icons
- * @param  {Object} [sizes=SIZES]            For testing: reduce number of sizes
- * @param  {Function} [imageTransform=svg2png] For testing: avoid expensive calls to svg2png
- * @return {Stream}
+ * @param  {Object} [sizes=SIZES]    Provide the needed sizes, or use default if not specified.
+ * @param  {typeof sharp} [imageTransform=sharp] For testing: avoid expensive calls to sharp
  */
-module.exports = function(sizes = SIZES, imageTransform = svg2png) {
+module.exports = function (sizes = SIZES, imageTransform = sharp) {
 	return through.obj(transform(sizes, imageTransform));
 };
