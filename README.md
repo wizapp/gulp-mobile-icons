@@ -21,45 +21,70 @@ gulp.task('default', [], function() {
 
 This will create all icons in the folder `images/`.
 
+If you want to customize the filenames or sizes of the icons, pass an object to mobileIcons(SIZES):
+```javascript
+gulp.task('build_icons', [], function() {
+    const MY_SIZES = {
+        'icon-57': { width: 57, height: 57 },
+        'icon-57@2x': { width: 114, height: 114 },
+        'icon-72': { width: 72, height: 72 }
+    }
+    gulp.src('icon.svg')
+        .pipe(mobileIcons(MY_SIZES))
+        .pipe(gulp.dest('images'));
+});
+```
+
 ### Cordova / PhoneGap
 
 Add the following to your `config.xml` to use the icons in a Cordova/PhoneGap application:
 
 ```html
 <platform name="ios">
-    <!-- App icon -->
-    <icon src="images/ios-57.png"      width="57"  height="57"/>
-    <icon src="images/ios-57@2x.png"   width="114" height="114"/>
-    <icon src="images/ios-72.png"      width="72"  height="72"/>
-    <icon src="images/ios-72@2x.png"   width="144" height="144"/>
-    <icon src="images/ios-60.png"      width="60"  height="60"/>
-    <icon src="images/ios-60@2x.png"   width="120" height="120"/>
-    <icon src="images/ios-60@3x.png"   width="180" height="180"/>
-    <icon src="images/ios-76.png"      width="76"  height="76"/>
-    <icon src="images/ios-76@2x.png"   width="152" height="152"/>
-    <icon src="images/ios-76@3x.png"   width="228" height="228"/>
-    <icon src="images/ios-83.5@2x.png" width="167" height="167"/>
-
-    <!-- Spotlight -->
-    <icon src="images/ios-50@2x.png"   width="100" height="100"/>
-    <icon src="images/ios-40.png"      width="40"  height="40"/>
-    <icon src="images/ios-40@2x.png"   width="80"  height="80"/>
-    <icon src="images/ios-40@3x.png"   width="120" height="120"/>
-
-    <!-- Settings -->
-    <icon src="images/ios-29.png"      width="29"  height="29"/>
-    <icon src="images/ios-29@2x.png"   width="58"  height="58"/>
-    <icon src="images/ios-29@3x.png"   width="87"  height="87"/>
-
-    <!-- Navigation bar and toolbar -->
-    <icon src="images/ios-22.png"      width="22"  height="22"/>
-    <icon src="images/ios-22@2x.png"   width="44"  height="44"/>
-    <icon src="images/ios-22@3x.png"   width="66"  height="66"/>
-
-    <!-- Tab bar -->
-    <icon src="images/ios-25.png"      width="25"  height="25"/>
-    <icon src="images/ios-25@2x.png"   width="50"  height="50"/>
-    <icon src="images/ios-25@3x.png"   width="75"  height="75"/>
+    <!-- iOS 8.0+ -->
+    <!-- iPhone 6 Plus  -->
+    <icon src="images/ios-60@3x.png" width="180" height="180" />
+    <!-- iOS 7.0+ -->
+    <!-- iPhone / iPod Touch  -->
+    <icon src="images/ios-60.png" width="60" height="60" />
+    <icon src="images/ios-60@2x.png" width="120" height="120" />
+    <!-- iPad -->
+    <icon src="images/ios-76.png" width="76" height="76" />
+    <icon src="images/ios-76@2x.png" width="152" height="152" />
+    <!-- Spotlight Icon -->
+    <icon src="images/ios-40.png" width="40" height="40" />
+    <icon src="images/ios-40@2x.png" width="80" height="80" />
+    <icon src="images/ios-40@3x.png" width="120" height="120" /> <!-- same as 60@2x -->
+    <!-- iOS 6.1 -->
+    <!-- iPhone / iPod Touch -->
+    <icon src="images/ios-57.png" width="57" height="57" />
+    <icon src="images/ios-57@2x.png" width="114" height="114" />
+    <!-- iPad -->
+    <icon src="images/ios-20.png" width="20" height="20" />
+    <icon src="images/ios-29.png" width="29" height="29" />
+    <icon src="images/ios-72.png" width="72" height="72" />
+    <icon src="images/ios-72@2x.png" width="144" height="144" />
+    <!-- iPhone Spotlight and Settings Icon -->
+    <icon src="images/ios-29.png" width="29" height="29" />
+    <icon src="images/ios-29@2x.png" width="58" height="58" />
+    <icon src="images/ios-29@3x.png" width="87" height="87" />
+    <icon src="images/ios-20@2x.png" width="40" height="40" /> <!-- same as 40@1x -->
+    <icon src="images/ios-20@3x.png" width="60" height="60" /> <!-- same as 60@1x -->
+    <!-- iPad Spotlight and Settings Icon -->
+    <icon src="res/ios/icon-50.png" width="50" height="50" />
+    <icon src="images/ios-50@2x.png" width="100" height="100" />
+    <!-- iPad Pro -->
+    <icon src="images/ios-83.5@2x.png" width="167" height="167" />
+    <!-- Apple Watch -->
+    <icon src="images/ios-24.png" width="24" height="24" />
+    <icon src="images/ios-24@2x.png" width="48" height="48" />
+    <icon src="images/ios-27.5@2x.png" width="55" height="55" />
+    <icon src="images/ios-44@2x.png" width="88" height="88" />
+    <icon src="images/ios-86@2x.png" width="172" height="172" />
+    <icon src="images/ios-98@2x.png" width="196" height="196" />
+    <icon src="images/ios-108@2x.png" width="216" height="216" />
+    <!-- iTunes Marketing Image -->
+    <icon src="images/ios-1024.png" width="1024" height="1024" />
 </platform>
 
 <platform name="android">

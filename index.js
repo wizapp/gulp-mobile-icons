@@ -53,6 +53,7 @@ const SIZES = {
 	// iPad retina (iOS 5 + iOS 6)
 	'ios-50@2x'  : { width: 100, height: 100 },
 	// iPhone + iPad (non-retina)
+	'ios-50'     : { width:  50, height:  50 },
 	'ios-40'     : { width:  40, height:  40 },
 	// iPhone 6s, iPhone 6, iPhone SE, iPad Pro, iPad, iPad mini
 	'ios-40@2x'  : { width:  80, height:  80 },
@@ -68,6 +69,8 @@ const SIZES = {
 	'ios-29@3x'  : { width:  87, height:  87 },
 
 	/* Navigation bar and toolbar */
+	// iPad
+	'ios-20'     : { width:  20, height:  20 },
 	// iPhone + iPad (non-retina)
 	'ios-22'     : { width:  22, height:  22 },
 	// iPhone 6s, iPhone 6, iPhone SE, iPad Pro, iPad, iPad mini
@@ -82,6 +85,15 @@ const SIZES = {
 	'ios-25@2x'  : { width:  50, height:  50 },
 	// iPhone 6s Plus, iPhone 6 Plus
 	'ios-25@3x'  : { width:  75, height:  75 },
+
+	// Apple Watch
+	'ios-24'   :   { width: 24,  height: 24},
+	'ios-24@2x':   { width: 48,  height: 48},
+	'ios-27.5@2x': { width: 55,  height: 55},
+	'ios-44@2x':   { width: 88,  height: 88},
+	'ios-86@2x':   { width: 172, height: 172},
+	'ios-98@2x':   { width: 196, height: 196},
+	'ios-108@2x':  { width: 216, height: 216},
 
 	// iOS marketing icon
 	'ios-marketing': { width: 1024, height: 1024 },
