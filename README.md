@@ -21,7 +21,7 @@ gulp.task('default', [], function() {
 
 This will create all icons in the folder `images/`.
 
-If you want to customize the filenames or sizes of the icons, pass an object to mobileIcons(SIZES):
+If you want to customize the filenames or sizes of the icons, pass an object to mobileIcons(MY_SIZES):
 ```javascript
 gulp.task('build_icons', [], function() {
     const MY_SIZES = {
