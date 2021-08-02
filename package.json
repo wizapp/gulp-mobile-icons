@@ -1,6 +1,6 @@
 {
   "name": "gulp-mobile-icons",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "description": "Gulp plugin that creates PNG icons for iOS and Android based on a SVG image",
   "dependencies": {
     "gulp-util": "^3.0.7",
