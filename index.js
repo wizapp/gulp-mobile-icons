@@ -135,6 +135,7 @@ const transform = (sizes, imageTransform) => function (file, encoding, callback)
 			});
 	});
 
+	// FIXME: Should this better call `callback(e)` in the case of an error?
 	Promise
 		.all(promises)
 		.then(() => callback(null))
