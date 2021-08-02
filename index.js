@@ -105,12 +105,29 @@ const SIZES = {
 };
 
 /**
- * 
- * @param {typeof SIZES} sizes 
- * @param {typeof sharp} imageTransform 
- * @returns 
+ *
+ * @typedef {Object} MobileIconsOptions
+ * @property {string} [background]
  */
-const transform = (sizes, imageTransform) => function (file, encoding, callback) {
+
+/**
+ * @typedef {Object} TransformOptions
+ * @extends {sharp.ResizeOptions}
+ * @property {string} [background]
+ * @property {number} [density]
+ */
+/**
+ * @typedef {(img: Buffer, transformOptions: TransformOptions) => Promise<Buffer>} Transform
+ */
+
+/**
+ *
+ * @param {typeof SIZES} sizes
+ * @param {MobileIconsOptions} options
+ * @param {Transform} imageTransform
+ * @returns
+ */
+const transform = (sizes, options, imageTransform) => function (file, encoding, callback) {
 	if (file.isStream()) {
 		this.emit('error', new PluginError(PLUGIN_NAME, 'Streams are not supported!'));
 		return callback();
@@ -119,11 +136,11 @@ const transform = (sizes, imageTransform) => function (file, encoding, callback)
 	const promises = Object.keys(sizes).map(name => {
 		const size = sizes[name];
 		const density = size.width; // the import density needs to be higher if the output size is large!
-		return imageTransform(Buffer.from(file.contents), { density: density })
-			.resize(sizes[name])
-			.flatten({ background: '#FFF' })
-			.png().toBuffer()
-			.then(png => {
+		return imageTransform(Buffer.from(file.contents), {
+				density,
+				...sizes[name],
+				...options,
+			}).then(png => {
 				const result = new gutil.File({
 					cwd: './',
 					path: `${name}.png`,
@@ -142,11 +159,23 @@ const transform = (sizes, imageTransform) => function (file, encoding, callback)
 		.catch(e => console.error(e));
 };
 
+/** @type {Transform} */
+const sharpTransform = (img, { width, height, density, background, ...sharpOpts}) => {
+	let result = sharp(img, { density, ...sharpOpts })
+		.resize({width, height});
+	if (background) {
+		result = result.flatten({background});
+	}
+
+	return result.png().toBuffer();
+}
+
 /**
  * Creates mobile icons
- * @param  {Object} [sizes=SIZES]    Provide the needed sizes, or use default if not specified.
- * @param  {typeof sharp} [imageTransform=sharp] For testing: avoid expensive calls to sharp
+ * @param {Object} [sizes=SIZES]    Provide the needed sizes, or use default if not specified.
+ * @param {MobileIconsOptions} [options={}] Additional options such as `background: '#FFF'` to render into a different background
+ * @param {Transform} [imageTransform=sharpTransform] For testing: avoid expensive calls to sharp
  */
-module.exports = function (sizes = SIZES, imageTransform = sharp) {
-	return through.obj(transform(sizes, imageTransform));
+module.exports = function (sizes = SIZES, options = {}, imageTransform = sharpTransform) {
+	return through.obj(transform(sizes, options, imageTransform));
 };

@@ -4,11 +4,12 @@
 
 const mobileIconsPlugin = require('../');
 const fs = require('fs');
-const should = require('should');
 const File = require('vinyl');
 
+require('should');
+
 describe('gulp-mobile-icons', function() {
-	// svg2png takes its time
+	// Sharp takes its time
 	this.timeout(15000);
 
 	let file, check;
@@ -41,7 +42,7 @@ describe('gulp-mobile-icons', function() {
 			'android-mdpi' : { width: 48, height: 48 }
 		};
 
-		const stream = mobileIconsPlugin(sizes, () => Promise.resolve(null));
+		const stream = mobileIconsPlugin(sizes, {}, () => Promise.resolve(null));
 
 		check(stream, done, function(files) {
 			files.should.have.keys('android-ldpi.png', 'android-mdpi.png');
