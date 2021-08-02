@@ -1,9 +1,9 @@
 /* jshint node: true */
-
+// @ts-check
 'use strict';
 
 const through = require('through2');
-const svg2png = require('svg2png');
+const sharp = require("sharp");
 const gutil = require('gulp-util');
 const PluginError = gutil.PluginError;
 
@@ -11,6 +11,7 @@ const PLUGIN_NAME = 'gulp-mobile-icons';
 
 /**
  * List of all sizes for which PNGs need to be created
+ * @type {Object.<string,sharp.ResizeOptions>}}
  */
 const SIZES = {
 	/** ANDROID **/
@@ -52,6 +53,7 @@ const SIZES = {
 	// iPad retina (iOS 5 + iOS 6)
 	'ios-50@2x'  : { width: 100, height: 100 },
 	// iPhone + iPad (non-retina)
+	'ios-50'     : { width:  50, height:  50 },
 	'ios-40'     : { width:  40, height:  40 },
 	// iPhone 6s, iPhone 6, iPhone SE, iPad Pro, iPad, iPad mini
 	'ios-40@2x'  : { width:  80, height:  80 },
@@ -67,6 +69,8 @@ const SIZES = {
 	'ios-29@3x'  : { width:  87, height:  87 },
 
 	/* Navigation bar and toolbar */
+	// iPad
+	'ios-20'     : { width:  20, height:  20 },
 	// iPhone + iPad (non-retina)
 	'ios-22'     : { width:  22, height:  22 },
 	// iPhone 6s, iPhone 6, iPhone SE, iPad Pro, iPad, iPad mini
@@ -82,6 +86,15 @@ const SIZES = {
 	// iPhone 6s Plus, iPhone 6 Plus
 	'ios-25@3x'  : { width:  75, height:  75 },
 
+	// Apple Watch
+	'ios-24'   :   { width: 24,  height: 24},
+	'ios-24@2x':   { width: 48,  height: 48},
+	'ios-27.5@2x': { width: 55,  height: 55},
+	'ios-44@2x':   { width: 88,  height: 88},
+	'ios-86@2x':   { width: 172, height: 172},
+	'ios-98@2x':   { width: 196, height: 196},
+	'ios-108@2x':  { width: 216, height: 216},
+
 	// iOS marketing icon
 	'ios-marketing': { width: 1024, height: 1024 },
 
@@ -91,18 +104,29 @@ const SIZES = {
 	'chrome-128': { width: 128, height: 128 }
 };
 
-const transform = (sizes, imageTransform) => function(file, encoding, callback) {
+/**
+ * 
+ * @param {typeof SIZES} sizes 
+ * @param {typeof sharp} imageTransform 
+ * @returns 
+ */
+const transform = (sizes, imageTransform) => function (file, encoding, callback) {
 	if (file.isStream()) {
 		this.emit('error', new PluginError(PLUGIN_NAME, 'Streams are not supported!'));
 		return callback();
 	}
 
 	const promises = Object.keys(sizes).map(name => {
-		return imageTransform(Buffer.from(file.contents), sizes[name])
+		const size = sizes[name];
+		const density = size.width; // the import density needs to be higher if the output size is large!
+		return imageTransform(Buffer.from(file.contents), { density: density })
+			.resize(sizes[name])
+			.flatten({ background: '#FFF' })
+			.png().toBuffer()
 			.then(png => {
 				const result = new gutil.File({
-					cwd : './',
-					path : `${name}.png`,
+					cwd: './',
+					path: `${name}.png`,
 					contents: png
 				});
 				this.push(result);
@@ -113,16 +137,15 @@ const transform = (sizes, imageTransform) => function(file, encoding, callback) 
 
 	Promise
 		.all(promises)
-		.then(()  => callback(null))
+		.then(() => callback(null))
 		.catch(e => console.error(e));
 };
 
 /**
  * Creates mobile icons
- * @param  {Object} [sizes=SIZES]            For testing: reduce number of sizes
- * @param  {Function} [imageTransform=svg2png] For testing: avoid expensive calls to svg2png
- * @return {Stream}
+ * @param  {Object} [sizes=SIZES]    Provide the needed sizes, or use default if not specified.
+ * @param  {typeof sharp} [imageTransform=sharp] For testing: avoid expensive calls to sharp
  */
-module.exports = function(sizes = SIZES, imageTransform = svg2png) {
+module.exports = function (sizes = SIZES, imageTransform = sharp) {
 	return through.obj(transform(sizes, imageTransform));
 };
