@@ -25,7 +25,7 @@ describe('gulp-mobile-icons', function() {
 			stream.on('data', function(newFile) {
 				files[newFile.path] = newFile;
 			});
-			stream.on('end', function(newFile) {
+			stream.on('end', function() {
 				cb(files);
 				done();
 			});
