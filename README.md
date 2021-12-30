@@ -21,7 +21,7 @@ gulp.task('default', [], function() {
 
 This will create all icons in the folder `images/`.
 
-If you want to customize the filenames or sizes of the icons, pass an object to mobileIcons(MY_SIZES):
+If you want to customize the filenames or sizes of the icons, pass an object to `mobileIcons` with the sizes:
 ```javascript
 gulp.task('build_icons', [], function() {
     const MY_SIZES = {
@@ -34,6 +34,24 @@ gulp.task('build_icons', [], function() {
         .pipe(gulp.dest('images'));
 });
 ```
+
+Other options can be set, too:
+```javascript
+gulp.task('build_icons', [], function() {
+    const MY_SIZES = {
+        'icon-57': { width: 57, height: 57 },
+        'icon-57@2x': { width: 114, height: 114 },
+        'icon-72': { width: 72, height: 72 }
+    }
+    gulp.src('icon.svg')
+        .pipe(mobileIcons(MY_SIZES, {
+          // Use a white background
+          background: '#FFF'
+        }))
+        .pipe(gulp.dest('images'));
+});
+```
+
 
 ### Cordova / PhoneGap
 
